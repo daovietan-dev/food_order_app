@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import classes from './MealItemForm.module.css'
 import Input from '../../UI/Input'
 
-const MealItemForm = ({ id }) => {
+const MealItemForm = ({ id, onAddAmountMeal }) => {
+  const amountInput = useRef()
+
   const submitHandler = event => {
     event.preventDefault()
+    const enteredAmount = amountInput.current.value
+
+    onAddAmountMeal(+enteredAmount)
   }
 
   return (
@@ -17,6 +22,7 @@ const MealItemForm = ({ id }) => {
         defaultValue={1}
         label={`Amount`}
         type={`number`}
+        ref={amountInput}
       />
       <button>+ Add</button>
     </form>
