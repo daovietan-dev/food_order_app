@@ -21,7 +21,7 @@ const Cart = ({ onHideCart }) => {
   const mealList = (
     <ul className={classes[`cart-items`]}>
       {meals.map(meal => (
-        <li>{meal.name}</li>
+        <li key={meal.id}>{meal.name}</li>
       ))}
     </ul>
   )
