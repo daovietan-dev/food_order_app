@@ -11,6 +11,22 @@ const HeaderButton = ({ onClick }) => {
     (culNumber, meal) => culNumber + meal.amount,
     0
   )
+
+  useEffect(() => {
+    if (meals.length === 0) return
+
+    setIsBump(true)
+
+    const timer = setTimeout(() => {
+      setIsBump(false)
+    }, 300)
+
+    return () => {
+      clearTimeout(timer)
+    }
+    // if you don't add [meals] dependency, the component will re-render with a infinity times because state update
+  }, [meals])
+
   return (
     <button
       className={`${classes.button} ${isBump ? classes.bump : ''}`}
